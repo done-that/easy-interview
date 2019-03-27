@@ -7,6 +7,10 @@
   "author": "Done That",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "build": "npx webpack",
+    "start:dev": "npx webpack-dev-server"
+  },
   "devDependencies": {
     "@types/jasmine": "^2.8.8",
     "@webpack-cli/init": "^0.0.8",
