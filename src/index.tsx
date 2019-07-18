@@ -3,8 +3,8 @@ import * as ReactDOM from 'react-dom';
 
 class App extends React.Component {
   public render() {
-    return (<div></div>);
+    return (<div>Hello App</div>);
   }
 }
 
-ReactDOM.render(<div>Hello</div>, document.getElementById('mount'));
+ReactDOM.render(<App></App>, document.getElementById('mount'));

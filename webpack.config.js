@@ -83,10 +83,12 @@ module.exports = {
   },
 
   mode: 'production',
-  entry: './src/index.tsx',
+  entry: {
+    'content/app': './src/index.tsx',
+  },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'index.js'
+    filename: '[name].js'
   },
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
