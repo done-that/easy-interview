@@ -33,7 +33,7 @@
     "json-loader": "^0.5.7",
     "karma": "^4.2.0",
     "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.13.1",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.23.1",
     "ts-loader": "^6.0.4",
