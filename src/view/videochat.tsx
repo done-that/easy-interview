@@ -2,16 +2,14 @@ import React, { useEffect, useState, useRef } from 'react';
 import Peer, { SignalData } from 'simple-peer';
 import styled from 'styled-components';
 import { socket } from '../connections/socket';
-
+import './videochat.css';
 
 const Container = styled.div`
-  height: 100vh;
-  width: 100%;
   flex-direction: column;
 `;
 
 const Row = styled.div`
-  width: 100%;
+  margin: 10px;
 `;
 
 const Video = styled.video`
@@ -97,8 +95,8 @@ function VideoChatApp(props: VideoChatProps) {
       stream: stream,
     });
     peer.on('signal', data => {
-      socket.emit('acceptCall', { signal: data, to: caller })
-    })
+      socket.emit('acceptCall', { signal: data, to: caller });
+    });
 
     peer.on('stream', stream => {
       if (partnerVideo.current) {
@@ -125,27 +123,29 @@ function VideoChatApp(props: VideoChatProps) {
   } else if (receivingCall) {
     mainView = (
       <div>
-        <h1>{props.opponentUsername} is calling you</h1>
+        <div>{props.opponentUsername} is calling you</div>
         <button onClick={acceptCall}><h1>Accept</h1></button>
       </div>
     )
   } else if (isCalling) {
     mainView = (
       <div>
-        <h1>Currently calling {props.opponentUsername}...</h1>
+        <div>Currently calling {props.opponentUsername}...</div>
       </div>
     )
   } else {
     mainView = (
       <button onClick={() => {
         callPeer(props.opponentSocketId)
-      }}><h1>Chat with your friend while you play!</h1></button>
+      }}><div>Call</div></button>
     )
   }
 
-  return (<Container>
+  return (<Container className='videochat'>
     <Row>
       {mainView}
+    </Row>
+    <Row>
       {UserVideo}
     </Row>
   </Container>);

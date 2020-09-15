@@ -3,6 +3,8 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { socket } from '../connections/socket'
 
+import './interview-room.css';
+
 /**
  * 'Join interview' is where we actually join the interview room. 
  */
@@ -31,16 +33,19 @@ interface JoinInterviewProps {
   owner: boolean,
 }
 
+interface JoinInterviewParams {
+  interviewId: string;
+}
+
 function JoinInterview(props: JoinInterviewProps) {
   /**
    * Extract the 'interviewId' from the URL. 
    * the 'interviewId' is the interviewRoom ID. 
    */
-  const { interviewId } = useParams()
+  const { interviewId } = useParams<JoinInterviewParams>()
   joinInterviewRoom(interviewId, props.username, props.owner);
   return <div>
-    <h1 style={{ textAlign: "center" }}>Welcome to Interview with Friend!</h1>
-
+    <h1 style={{ textAlign: 'center' }}>Welcome to Interview!</h1>
   </div>
 }
 

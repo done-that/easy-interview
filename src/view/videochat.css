@@ -1,0 +1,11 @@
+.videochat button {
+  width: 200px;
+}
+
+.videochat {
+  flex-direction: column;
+  display: flex;
+  justify-content: right;
+  min-height: 400px;
+  min-width: 400px;
+}

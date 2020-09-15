@@ -2,6 +2,8 @@ import React from 'react'
 import JoinInterview from './join-interview';
 import { InterviewRoom } from './interview-room';
 
+import './onboard.css';
+
 /**
  * Onboard is where we create the interview room.
  */
@@ -41,18 +43,15 @@ class JoinRoom extends React.Component<JoinRoomProps> {
           <React.Fragment>
             <JoinInterview username={this.state.inputText} owner={false} />
             <InterviewRoom owner={false} interviewId={this.props.interviewId} />
-            {/* <ChessInterview myUserName={this.state.inputText} /> */}
           </React.Fragment>
           :
-          <div>
-            <h1 style={{ textAlign: "center", marginTop: String((window.innerHeight / 3)) + "px" }}>Your Username:</h1>
-
-            <input style={{ marginLeft: String((window.innerWidth / 2) - 120) + "px", width: "240px", marginTop: "62px" }}
+          <div className='onboard'>
+            <div className='header'>Your name</div>
+            <input className='text'
               ref={this.textArea}
               onInput={this.typingUserName}></input>
 
-            <button className="btn btn-primary"
-              style={{ marginLeft: String((window.innerWidth / 2) - 60) + "px", width: "120px", marginTop: "62px" }}
+            <button className='submit'
               disabled={!(this.state.inputText.length > 0)}
               onClick={() => {
                 // When the 'Submit' button gets pressed from the username screen,

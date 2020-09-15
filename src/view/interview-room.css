@@ -1,0 +1,39 @@
+.interview {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.interview .status {
+  display: flex;
+  font-size: large;
+}
+
+.interview .content {
+  display: flex;
+  flex-direction: row;
+}
+
+.interview .codeEditor {
+  min-height: 400px;
+  min-width: 400px;
+  height: 700px;
+  width: 100%;
+  margin: 10px;
+}
+
+.interview .language {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  font-weight: bold;
+}
+
+.interview select {
+  width: 100px;
+  height: 20px;
+}
+
+.interview .CodeMirror {
+  height: 600px;
+}

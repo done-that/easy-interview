@@ -4,6 +4,8 @@ import { v4 as uuid } from 'uuid'
 import { ColorContext } from '../context/color-context'
 import { socket } from '../connections/socket'
 
+import './onboard.css';
+
 /**
  * Onboard is where we create the interviewrview room.
  */
@@ -70,15 +72,13 @@ class CreateNewInterview extends React.Component<CreateNewInterviewProps> {
             </button>
           </Redirect>
           :
-          <div>
-            <h1 style={{ textAlign: 'center', marginTop: String((window.innerHeight / 3)) + 'px' }}>Your Username:</h1>
-
-            <input style={{ marginLeft: String((window.innerWidth / 2) - 120) + 'px', width: '240px', marginTop: '62px' }}
+          <div className='onboard'>
+            <div className='header'>Your name</div>
+            <input className='text'
               ref={this.textArea}
               onInput={this.typingUserName}></input>
 
-            <button className='btn btn-primary'
-              style={{ marginLeft: String((window.innerWidth / 2) - 60) + 'px', width: '120px', marginTop: '62px' }}
+            <button className='submit'
               disabled={!(this.state.inputText.length > 0)}
               onClick={() => {
                 // When the 'Submit' button gets pressed from the username screen,
