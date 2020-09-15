@@ -52,6 +52,7 @@ class JoinRoom extends React.Component<JoinRoomProps> {
               onInput={this.typingUserName}></TextField>
 
             <Button className='submit'
+              variant='contained'
               disabled={!(this.state.inputText.length > 0)}
               onClick={() => {
                 // When the 'Submit' button gets pressed from the username screen,

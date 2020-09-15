@@ -68,7 +68,7 @@ class CreateNewInterview extends React.Component<CreateNewInterviewProps> {
         this.state.didGetUsername ?
 
           <Redirect to={'/interview/' + this.state.interviewId}>
-            <Button className='btn btn-success' style={{ marginLeft: String((window.innerWidth / 2) - 60) + 'px', width: '120px' }}>
+            <Button variant='contained' className='btn btn-success' style={{ marginLeft: String((window.innerWidth / 2) - 60) + 'px', width: '120px' }}>
               Start Interview
             </Button>
           </Redirect>

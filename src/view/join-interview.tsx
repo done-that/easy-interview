@@ -2,6 +2,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { socket } from '../connections/socket'
+import CopyUrlToClipboard from './clipboard';
 
 import './interview-room.css';
 
@@ -46,6 +47,7 @@ function JoinInterview(props: JoinInterviewProps) {
   joinInterviewRoom(interviewId, props.username, props.owner);
   return <div>
     <h1 style={{ textAlign: 'center' }}>Welcome to Interview!</h1>
+    <CopyUrlToClipboard />
   </div>
 }
 
