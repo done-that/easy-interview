@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 import { ColorContext } from '../context/color-context'
 import { socket } from '../connections/socket'
+import { Button, TextField } from '@material-ui/core';
 
 import './onboard.css';
 
@@ -67,19 +68,22 @@ class CreateNewInterview extends React.Component<CreateNewInterviewProps> {
         this.state.didGetUsername ?
 
           <Redirect to={'/interview/' + this.state.interviewId}>
-            <button className='btn btn-success' style={{ marginLeft: String((window.innerWidth / 2) - 60) + 'px', width: '120px' }}>
+            <Button className='btn btn-success' style={{ marginLeft: String((window.innerWidth / 2) - 60) + 'px', width: '120px' }}>
               Start Interview
-            </button>
+            </Button>
           </Redirect>
           :
           <div className='onboard'>
             <div className='header'>Your name</div>
-            <input className='text'
-              ref={this.textArea}
-              onInput={this.typingUserName}></input>
+            {/* <TextField error id="standard-error" label="Error" defaultValue="Hello World" /> */}
+            <TextField className='text'
+              inputRef={this.textArea}
+              onInput={this.typingUserName}></TextField>
 
-            <button className='submit'
+            <Button className='submit'
               disabled={!(this.state.inputText.length > 0)}
+              color='primary'
+              variant='contained'
               onClick={() => {
                 // When the 'Submit' button gets pressed from the username screen,
                 // We should send a request to the server to create a new room with
@@ -90,7 +94,7 @@ class CreateNewInterview extends React.Component<CreateNewInterviewProps> {
                   didGetUsername: true
                 })
                 this.send()
-              }}>Submit</button>
+              }}>Submit</Button>
           </div>
       }
     </React.Fragment>)

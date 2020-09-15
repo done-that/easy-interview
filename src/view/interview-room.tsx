@@ -2,6 +2,7 @@ import React, { ChangeEvent } from 'react';
 import { socket, socketId } from '../connections/socket';
 import VideoChatApp from './videochat';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
+import { CircularProgress, MenuItem, Select } from '@material-ui/core';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import 'codemirror/addon/lint/lint.css';
@@ -130,7 +131,7 @@ export class InterviewRoom extends React.Component<InterviewRoomProps> {
     }, 500);
   };
 
-  onLanguageSelected(event: ChangeEvent<HTMLSelectElement>) {
+  onLanguageSelected(event: React.ChangeEvent<{ name?: string; value: unknown }>) {
     this.setState({
       selectedLanguage: event.target.value,
     });
@@ -146,20 +147,20 @@ export class InterviewRoom extends React.Component<InterviewRoomProps> {
 
     for (const key of Object.keys(languagesSupported)) {
       items.push(
-        <option key={key} value={key}>
+        <MenuItem key={key} value={key}>
           {key}
-        </option>
+        </MenuItem>
       );
     }
     return (
-      <select
+      <Select
         name='language'
         id='language'
         onChange={this.onLanguageSelected.bind(this)}
         value={this.state.selectedLanguage}
       >
         {items}
-      </select>
+      </Select>
     );
   }
 
@@ -167,7 +168,7 @@ export class InterviewRoom extends React.Component<InterviewRoomProps> {
     return (
       <div className='interview'>
         {this.state.waiting ? (
-          <div>Waiting for candidate to join...</div>
+          <div>Waiting for candidate to join... <CircularProgress size={24} /></div>
         ) : (
             <div></div>
           )}

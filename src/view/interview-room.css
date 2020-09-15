@@ -27,6 +27,7 @@
   flex-direction: row;
   margin: 10px;
   font-weight: bold;
+  line-height: 32px;
 }
 
 .interview select {

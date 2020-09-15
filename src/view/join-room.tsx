@@ -1,7 +1,7 @@
 import React from 'react'
 import JoinInterview from './join-interview';
 import { InterviewRoom } from './interview-room';
-
+import { Button, TextField } from '@material-ui/core';
 import './onboard.css';
 
 /**
@@ -47,11 +47,11 @@ class JoinRoom extends React.Component<JoinRoomProps> {
           :
           <div className='onboard'>
             <div className='header'>Your name</div>
-            <input className='text'
-              ref={this.textArea}
-              onInput={this.typingUserName}></input>
+            <TextField className='text'
+              inputRef={this.textArea}
+              onInput={this.typingUserName}></TextField>
 
-            <button className='submit'
+            <Button className='submit'
               disabled={!(this.state.inputText.length > 0)}
               onClick={() => {
                 // When the 'Submit' button gets pressed from the username screen,
@@ -60,7 +60,7 @@ class JoinRoom extends React.Component<JoinRoomProps> {
                 this.setState({
                   didGetUserName: true
                 })
-              }}>Submit</button>
+              }}>Submit</Button>
           </div>
       }
     </React.Fragment>)

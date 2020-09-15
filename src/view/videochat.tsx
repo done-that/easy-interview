@@ -2,6 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import Peer, { SignalData } from 'simple-peer';
 import styled from 'styled-components';
 import { socket } from '../connections/socket';
+import { Button } from '@material-ui/core';
+import CallIcon from '@material-ui/icons/Call';
+import CallMadeIcon from '@material-ui/icons/CallMade';
+import CallReceivedIcon from '@material-ui/icons/CallReceived';
 import './videochat.css';
 
 const Container = styled.div`
@@ -110,7 +114,7 @@ function VideoChatApp(props: VideoChatProps) {
   let UserVideo;
   if (stream) {
     UserVideo = (
-      <Video playsInline muted ref={userVideo} autoPlay style={{ width: '50%', height: '50%' }} />
+      <Video playsInline muted ref={userVideo} autoPlay style={{ height: '50%' }} />
     );
   }
 
@@ -123,21 +127,21 @@ function VideoChatApp(props: VideoChatProps) {
   } else if (receivingCall) {
     mainView = (
       <div>
-        <div>{props.opponentUsername} is calling you</div>
-        <button onClick={acceptCall}><h1>Accept</h1></button>
+        <div><CallReceivedIcon /> {props.opponentUsername} is calling you</div>
+        <Button onClick={acceptCall}><h1>Accept</h1></Button>
       </div>
     )
   } else if (isCalling) {
     mainView = (
       <div>
-        <div>Currently calling {props.opponentUsername}...</div>
+        <div><CallMadeIcon /> Currently calling {props.opponentUsername}...</div>
       </div>
     )
   } else {
     mainView = (
-      <button onClick={() => {
+      <Button onClick={() => {
         callPeer(props.opponentSocketId)
-      }}><div>Call</div></button>
+      }}><div><CallIcon />Call</div></Button>
     )
   }
 
