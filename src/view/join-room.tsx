@@ -14,7 +14,7 @@ interface JoinRoomProps {
 
 class JoinRoom extends React.Component<JoinRoomProps> {
   state = {
-    didGetUserName: false,
+    didGetName: false,
     inputText: ""
   }
 
@@ -39,9 +39,9 @@ class JoinRoom extends React.Component<JoinRoomProps> {
 
     return (<React.Fragment>
       {
-        this.state.didGetUserName ?
+        this.state.didGetName ?
           <React.Fragment>
-            <JoinInterview username={this.state.inputText} owner={false} />
+            <JoinInterview interviewer={this.state.inputText} owner={false} />
             <InterviewRoom owner={false} interviewId={this.props.interviewId} />
           </React.Fragment>
           :
@@ -59,7 +59,7 @@ class JoinRoom extends React.Component<JoinRoomProps> {
                 // We should send a request to the server to create a new room with
                 // the uuid we generate here.
                 this.setState({
-                  didGetUserName: true
+                  didGetName: true
                 })
               }}>Submit</Button>
           </div>

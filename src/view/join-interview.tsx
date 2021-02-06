@@ -11,7 +11,7 @@ import './interview-room.css';
  */
 
 
-function joinInterviewRoom(interviewId: string, username: string, owner: boolean) {
+function joinInterviewRoom(interviewId: string, interviewer: string, owner: boolean) {
   /**
    * For this browser instance, we want 
    * to join it to a interviewRoom. For now
@@ -23,14 +23,14 @@ function joinInterviewRoom(interviewId: string, username: string, owner: boolean
    */
   const idData = {
     interviewId,
-    username,
+    interviewer,
     owner,
   }
-  socket.emit("join-interview", idData)
+  socket.emit('join-interview', idData)
 }
 
 interface JoinInterviewProps {
-  username: string,
+  interviewer: string,
   owner: boolean,
 }
 
@@ -44,7 +44,7 @@ function JoinInterview(props: JoinInterviewProps) {
    * the 'interviewId' is the interviewRoom ID. 
    */
   const { interviewId } = useParams<JoinInterviewParams>()
-  joinInterviewRoom(interviewId, props.username, props.owner);
+  joinInterviewRoom(interviewId, props.interviewer, props.owner);
   return <div>
     <h1 style={{ textAlign: 'center' }}>Welcome to Interview!</h1>
     <CopyUrlToClipboard />

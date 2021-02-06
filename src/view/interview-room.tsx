@@ -83,7 +83,7 @@ export class InterviewRoom extends React.Component<InterviewRoomProps> {
     selectedLanguage: 'Java',
   };
 
-  timeout?: number;
+  timeout?: NodeJS.Timeout;
 
   textArea: React.RefObject<CodeMirror>;
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-import { ColorContext } from '../context/color-context'
+import { InterviewContext } from '../context/interview-context'
 import { socket } from '../connections/socket'
 import { Button, TextField } from '@material-ui/core';
 
@@ -13,7 +13,7 @@ import './onboard.css';
 
 interface CreateNewInterviewProps {
   didRedirect: () => void
-  setUsername: (username: string) => void
+  setInterviewer: (username: string) => void
 }
 
 class CreateNewInterview extends React.Component<CreateNewInterviewProps> {
@@ -75,7 +75,6 @@ class CreateNewInterview extends React.Component<CreateNewInterviewProps> {
           :
           <div className='onboard'>
             <div className='header'>Your name</div>
-            {/* <TextField error id="standard-error" label="Error" defaultValue="Hello World" /> */}
             <TextField className='text'
               inputRef={this.textArea}
               onInput={this.typingUserName}></TextField>
@@ -89,7 +88,7 @@ class CreateNewInterview extends React.Component<CreateNewInterviewProps> {
                 // We should send a request to the server to create a new room with
                 // the uuid we generate here.
                 this.props.didRedirect()
-                this.props.setUsername(this.state.inputText)
+                this.props.setInterviewer(this.state.inputText)
                 this.setState({
                   didGetUsername: true
                 })
@@ -102,13 +101,13 @@ class CreateNewInterview extends React.Component<CreateNewInterviewProps> {
 }
 
 interface OnBoardProps {
-  setUsername: (username: string) => void
+  setInterviewer: (username: string) => void
 }
 
 function Onboard(props: OnBoardProps) {
-  const color = React.useContext(ColorContext)
+  const color = React.useContext(InterviewContext)
 
-  return <CreateNewInterview didRedirect={color.playerDidRedirect} setUsername={props.setUsername} />
+  return <CreateNewInterview didRedirect={color.didStart} setInterviewer={props.setInterviewer} />
 }
 
 

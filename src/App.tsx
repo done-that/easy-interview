@@ -1,36 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
-import { ColorContext } from './context/color-context';
+import { InterviewContext } from './context/interview-context';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Onboard from './view/onboard';
 import JoinRoom from './view/join-room';
 import JoinInterview from './view/join-interview';
 import { InterviewRoom } from './view/interview-room';
 
+function usePersistedState(key: string, defaultValue: unknown) {
+  const [state, setState] = React.useState(
+    () => {
+      const value = localStorage.getItem(key);
+      if (value === null) return defaultValue;
+      return JSON.parse(value);
+    });
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(state));
+  }, [key, state]);
+  return [state, setState];
+}
+
 function App() {
   const [didRedirect, setDidRedirect] = React.useState(false)
 
-  const playerDidRedirect = React.useCallback(() => {
+  const didStart = React.useCallback(() => {
     setDidRedirect(true)
   }, [])
 
-  const playerDidNotRedirect = React.useCallback(() => {
+  const didJoin = React.useCallback(() => {
     setDidRedirect(false)
   }, [])
 
-  const [username, setUsername] = React.useState('')
+  const [interviewer, setInterviewer] = React.useState('')
+  const [candidate, setCandidate] = React.useState('')
 
   return (
-    <ColorContext.Provider value={{ didRedirect, playerDidRedirect, playerDidNotRedirect }}>
+    <InterviewContext.Provider value={{ didRedirect, didStart, didJoin }}>
       <Router>
         <Switch>
           <Route path="/" exact>
-            <Onboard setUsername={setUsername} />
+            <Onboard setInterviewer={setInterviewer} />
           </Route>
           <Route path="/interview/:interviewId" exact render={({ match }) => (
             didRedirect ?
               <React.Fragment >
-                <JoinInterview username={username} owner={true} />
+                <JoinInterview interviewer={interviewer} owner={true} />
                 <InterviewRoom owner={true} interviewId={match.params.interviewId} />
               </React.Fragment>
               :
@@ -39,7 +53,7 @@ function App() {
           <Redirect to="/" />
         </Switch>
       </Router>
-    </ColorContext.Provider >);
+    </InterviewContext.Provider >);
 }
 
 export default App;
