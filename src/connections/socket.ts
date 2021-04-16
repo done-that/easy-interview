@@ -4,6 +4,7 @@ const socket = io('http://localhost:7000');
 
 // socket.emit('create', 'session');
 // app.service('api/session').create({})
+socket.connect();
 
 interface ICreateInterview {
   username: string,

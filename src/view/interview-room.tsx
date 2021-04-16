@@ -170,8 +170,8 @@ export class InterviewRoom extends React.Component<InterviewRoomProps> {
         {this.state.waiting ? (
           <div>Waiting for candidate to join... <CircularProgress size={24} /></div>
         ) : (
-            <div></div>
-          )}
+          <div></div>
+        )}
         <div className='language'>
           <span>Select Language: </span>
           {this.renderLanguageList()}

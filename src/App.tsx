@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
 import './App.css';
 import { InterviewContext } from './context/interview-context';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
@@ -14,7 +14,7 @@ function usePersistedState(key: string, defaultValue: unknown) {
       if (value === null) return defaultValue;
       return JSON.parse(value);
     });
-  useEffect(() => {
+  React.useEffect(() => {
     localStorage.setItem(key, JSON.stringify(state));
   }, [key, state]);
   return [state, setState];
